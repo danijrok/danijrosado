@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Danijr | Exclusive Barber</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --negro: #131313; 
+            --azul: #243CCE; 
+            --radioactive: #DBFF1A;
+            --rojo-status: #ff3b30; 
+            --verde-status: #4cd964; 
+            --blanco: #FFFFFF;
+            --gris-input: rgba(255, 255, 255, 0.05); 
+            --borde: rgba(36, 60, 206, 0.4);
+            --insta: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        }
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; outline: none; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background-color: var(--negro); color: var(--blanco); padding-bottom: 150px; overflow-x: hidden; }
+        
+        header { padding: 60px 20px 20px; text-align: center; position: relative; }
+        
+        /* Estado esquina superior izquierda */
+        .status-wrapper { position: absolute; top: 20px; left: 20px; }
+        .status-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 12px; font-size: 0.6rem; font-weight: 800; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+        .dot { width: 7px; height: 7px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
+        
+        /* Acciones esquina superior derecha */
+        .top-actions { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; }
+        .action-btn { background: var(--gris-input); border: 1px solid var(--borde); color: white; padding: 8px 12px; border-radius: 12px; font-weight: 800; font-size: 0.8rem; text-decoration: none; display: flex; align-items: center; }
+        .insta-btn { background: var(--insta); border: none; }
+
+        .logo-img { width: 100px; height: 100px; margin-bottom: 15px; border-radius: 50%; }
+        h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: -2px; margin: 0; color: var(--radioactive); }
+        .header-loc { font-size: 0.75rem; color: var(--azul); font-weight: 800; margin-top: 5px; letter-spacing: 1px; }
+        
+        .biografia-texto { padding: 30px 25px; text-align: center; }
+        .lema-danijr { color: var(--radioactive); font-weight: 900; font-size: 1.2rem; margin-top: 15px; text-transform: uppercase; }
+
+        .form-container { padding: 0 20px; display: grid; gap: 15px; }
+        input, select { background: var(--gris-input); border: 1px solid rgba(255,255,255,0.1); padding: 18px; border-radius: 18px; color: white; width: 100%; font-size: 1rem; }
+        
+        .servicio-card { padding: 20px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin: 0 20px 10px; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); cursor: pointer; transition: 0.3s; }
+        .servicio-card.selected { border-color: var(--radioactive); background: rgba(219, 255, 26, 0.1); }
+        .precio-tag { font-weight: 900; color: var(--radioactive); font-size: 1.2rem; }
+
+        .reserva-bar { position: fixed; bottom: 0; width: 100%; background: rgba(19, 19, 19, 0.98); padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); z-index: 999; backdrop-filter: blur(15px); }
+        .btn-enviar { background: var(--radioactive); color: var(--negro); text-align: center; padding: 20px; border-radius: 22px; text-decoration: none; font-weight: 900; display: block; box-shadow: 0 5px 15px rgba(219, 255, 26, 0.2); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="status-wrapper" id="status-container"></div>
+        <div class="top-actions">
+            <a href="https://instagram.com/danijrosado" target="_blank" class="action-btn insta-btn">IG</a>
+            <button class="action-btn" onclick="compartir()">📤</button>
+        </div>
+        <img src="https://i.ibb.co/whyNbnM0/Pine-Tools-com-Picsart-25-12-28-01-34-21-661.png" class="logo-img">
+        <h1>DANIJR</h1>
+        <div class="header-loc">📍 CONJUNTO ARMONIA, VALLEDUPAR</div>
+    </header>
+
+    <section class="biografia-texto">
+        <p style="margin:0; opacity: 0.8; line-height: 1.6;">Mi trabajo se define por la disciplina de perfeccionar cada técnica y dejar tu esencia en el resultado final.</p>
+        <div class="lema-danijr">GRACIAS DEUS</div>
+    </section>
+
+    <div class="form-container">
+        <input type="text" id="nombre" placeholder="Nombre y Apellido">
+        <input type="tel" id="telefono" placeholder="WhatsApp">
+    </div>
+
+    <div id="serv-render" style="margin-top: 20px;"></div>
+
+    <div class="reserva-bar">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px; align-items: flex-end;">
+            <span id="items-count" style="opacity: 0.6; font-size: 0.8rem;">0 seleccionados</span>
+            <div id="total-val" style="font-size: 1.8rem; font-weight: 900; color: var(--radioactive);">$0</div>
+        </div>
+        <a href="#" class="btn-enviar" onclick="enviar()">AGENDAR CITA</a>
+    </div>
+
+    <script>
+        // --- CAMBIO DE ESTADO AQUÍ ---
+        const estaOcupado = false; // true = ROJO/OCUPADO, false = VERDE/DISPONIBLE
+        
+        const WHATSAPP = "573007152391";
+        const servicios = [
+            {n:"Corte", p:12000}, 
+            {n:"Barba", p:6000}, 
+            {n:"Cejas", p:3000},
+            {n:"Mascarilla", p:3000}
+        ];
+        
+        let seleccionado = [];
+
+        function renderStatus() {
+            const c = document.getElementById('status-container');
+            c.innerHTML = estaOcupado ? 
+            `<div class="status-pill" style="color:var(--rojo-status)"><div class="dot" style="background:var(--rojo-status)"></div>OCUPADO</div>` :
+            `<div class="status-pill" style="color:var(--verde-status)"><div class="dot" style="background:var(--verde-status)"></div>DISPONIBLE</div>`;
+        }
+
+        window.onload = () => {
+            renderStatus();
+            const r = document.getElementById('serv-render');
+            servicios.forEach((s, i) => {
+                r.innerHTML += `<div class="servicio-card" id="s-${i}" onclick="sel(${i})">
+                    <strong>${s.n}</strong><div class="precio-tag">$${s.p.toLocaleString()}</div>
+                </div>`;
+            });
+        };
+
+        function sel(i) {
+            const s = servicios[i];
+            const idx = seleccionado.indexOf(s);
+            if(idx > -1) { 
+                seleccionado.splice(idx, 1); 
+                document.getElementById(`s-${i}`).classList.remove('selected'); 
+            } else { 
+                seleccionado.push(s); 
+                document.getElementById(`s-${i}`).classList.add('selected'); 
+            }
+            let t = seleccionado.reduce((a, b) => a + b.p, 0);
+            document.getElementById('total-val').innerText = `$${t.toLocaleString()}`;
+            document.getElementById('items-count').innerText = `${seleccionado.length} seleccionados`;
+        }
+
+        function enviar() {
+            const n = document.getElementById('nombre').value;
+            if(!n || seleccionado.length === 0) return alert("Ingresa tu nombre y selecciona un servicio.");
+            let m = `*RESERVA DANIJR*%0A*Cliente:* ${n}%0A*Servicios:*%0A`;
+            seleccionado.forEach(s => m += `- ${s.n}%0A`);
+            m += `%0A*TOTAL:* ${document.getElementById('total-val').innerText}`;
+            window.location.href = `https://wa.me/${WHATSAPP}?text=${m}`;
+        }
+
+        function compartir() { 
+            if (navigator.share) {
+                navigator.share({title:'Danijr Barber', url: window.location.href}); 
+            }
+        }
+    </script>
+</body>
+  </html>
+              
