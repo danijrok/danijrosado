@@ -3,305 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Danijr Barber">
-    <link rel="apple-touch-icon" href="https://i.ibb.co/whyNbnM0/Pine-Tools-com-Picsart-25-12-28-01-34-21-661.png">
-
     <title>Danijr | Exclusive Barber</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-    
     <style>
         :root {
-            --negro: #131313;
-            --azul: #243CCE;
+            --negro: #131313; 
+            --azul: #243CCE; 
             --radioactive: #DBFF1A;
-            --rojo-status: #ff3b30;
-            --verde-status: #4cd964;
+            --rojo-status: #ff3b30; 
+            --verde-status: #4cd964; 
             --blanco: #FFFFFF;
             --gris-input: rgba(255, 255, 255, 0.05); 
             --borde: rgba(36, 60, 206, 0.4);
-            --texto-muted: #888;
-            --insta: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
         }
-
         * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; outline: none; }
-        body { 
-            margin: 0; font-family: 'Inter', sans-serif; background-color: var(--negro); 
-            color: var(--blanco); padding-bottom: 280px; overflow-x: hidden;
-        }
-
-        header { padding: 60px 20px 20px; text-align: center; position: relative; }
-
-        /* Estado en la Esquina Superior Izquierda */
-        .status-wrapper { position: absolute; top: 20px; left: 20px; }
-        .status-pill {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 12px;
-            font-size: 0.6rem; font-weight: 800; border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-        }
-        .dot { width: 7px; height: 7px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
-
-        /* Acciones en la Esquina Superior Derecha */
-        .top-actions { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; }
-        .action-btn { 
-            background: var(--gris-input); backdrop-filter: blur(10px); 
-            border: 1px solid var(--borde); color: white; padding: 8px 12px; 
-            border-radius: 12px; font-weight: 800; font-size: 0.8rem; 
-            text-decoration: none; display: flex; align-items: center;
-        }
-        .insta-btn { background: var(--insta); border: none; }
-
-        .logo-img { width: 100px; height: 100px; margin-bottom: 15px; border: none; }
-
-        h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: -2px; margin: 0; color: var(--radioactive); }
-        .header-loc { font-size: 0.75rem; color: var(--azul); font-weight: 800; margin-top: 5px; letter-spacing: 1px; }
-
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
-
-        .biografia-texto { padding: 30px 25px; text-align: center; }
-        .label-bio { font-size: 0.6rem; color: var(--radioactive); letter-spacing: 3px; font-weight: 800; text-transform: uppercase; }
-        .lema-danijr { color: var(--radioactive); font-weight: 900; font-size: 1.2rem; margin-top: 15px; text-transform: uppercase; }
-
-        .vip-box { border: 2px solid var(--azul); margin: 20px; padding: 20px; border-radius: 24px; text-align: center; }
-        .vip-box h3 { color: var(--radioactive); font-size: 0.8rem; letter-spacing: 2px; margin: 0; }
-
-        .form-container { padding: 0 20px; display: grid; gap: 15px; }
-        input, select { background: var(--gris-input); border: 1px solid rgba(255,255,255,0.1); padding: 18px; border-radius: 18px; color: white; font-size: 1rem; width: 100%; transition: 0.3s; }
-        input:focus { border-color: var(--radioactive); }
-
-        .servicio-card { padding: 20px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin: 0 20px 10px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; }
-        .servicio-card.selected { border-color: var(--radioactive); background: rgba(219, 255, 26, 0.1); }
-        .precio-tag { font-weight: 900; color: var(--radioactive); font-size: 1.2rem; }
-        .info span { font-size: 0.75rem; color: var(--texto-muted); display: block; margin-top: 3px; }
-
-        .sub-servicios { margin: -5px 20px 15px; padding: 15px; border-radius: 18px; border: 1px solid var(--azul); display: grid; gap: 10px; }
-
-        .reserva-bar { position: fixed; bottom: 0; width: 100%; background: rgba(19, 19, 19, 0.95); backdrop-filter: blur(25px); border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 20px 40px; z-index: 9999; }
-        .aviso-tiempo { background: rgba(36, 60, 206, 0.1); border: 1px solid var(--azul); color: var(--azul); padding: 10px; border-radius: 12px; font-size: 0.7rem; text-align: center; margin-bottom: 15px; font-weight: 800; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background-color: var(--negro); color: var(--blanco); padding-bottom: 180px; overflow-x: hidden; }
         
-        .btn-enviar { background: var(--radioactive); color: var(--negro); text-align: center; padding: 20px; border-radius: 22px; text-decoration: none; font-weight: 900; font-size: 1.1rem; display: block; box-shadow: 0 10px 20px rgba(219, 255, 26, 0.15); }
-        .politica-nota { font-size: 0.6rem; color: var(--texto-muted); text-align: center; margin-top: 12px; font-weight: 600; text-transform: uppercase; }
+        header { padding: 60px 20px 20px; text-align: center; position: relative; }
+        
+        .status-wrapper { position: absolute; top: 20px; left: 20px; }
+        .status-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 12px; font-size: 0.6rem; font-weight: 800; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+        .dot { width: 7px; height: 7px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
+        
+        .top-actions { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; }
+        .action-btn { background: var(--gris-input); border: 1px solid var(--borde); color: white; padding: 8px 12px; border-radius: 12px; font-weight: 800; font-size: 0.8rem; text-decoration: none; }
+        
+        .logo-img { width: 100px; height: 100px; margin-bottom: 15px; border-radius: 50%; object-fit: cover; border: 2px solid var(--radioactive); }
+        h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: -2px; margin: 0; color: var(--radioactive); }
+        .header-loc { font-size: 0.75rem; color: var(--azul); font-weight: 800; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .biografia { padding: 20px; text-align: center; font-size: 0.9rem; line-height: 1.5; opacity: 0.9; }
+        .lema { color: var(--radioactive); font-weight: 900; margin-top: 10px; font-size: 1.1rem; }
 
-        #cliente-status { text-align: center; font-weight: 900; font-size: 0.7rem; margin: 10px 0; }
+        .form-container { padding: 0 20px; display: grid; gap: 12px; margin-bottom: 20px; }
+        input { background: var(--gris-input); border: 1px solid rgba(255,255,255,0.1); padding: 18px; border-radius: 18px; color: white; width: 100%; font-size: 1rem; transition: 0.3s; }
+        input:focus { border-color: var(--azul); background: rgba(255,255,255,0.08); }
+        
+        .servicio-card { padding: 18px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin: 0 20px 10px; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); transition: 0.3s; cursor: pointer; }
+        .servicio-card.selected { border-color: var(--radioactive); background: rgba(219, 255, 26, 0.1); transform: scale(1.02); }
+        .precio-tag { font-weight: 900; color: var(--radioactive); font-size: 1.1rem; }
+
+        .reserva-bar { position: fixed; bottom: 0; width: 100%; background: rgba(19, 19, 19, 0.95); padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); z-index: 999; backdrop-filter: blur(15px); }
+        .btn-enviar { background: var(--radioactive); color: var(--negro); text-align: center; padding: 20px; border-radius: 22px; text-decoration: none; font-weight: 900; display: block; box-shadow: 0 4px 20px rgba(219, 255, 26, 0.2); }
     </style>
 </head>
 <body>
-
     <header>
         <div class="status-wrapper" id="status-container"></div>
         <div class="top-actions">
-            <a href="https://instagram.com/danijrosado" target="_blank" class="action-btn insta-btn">IG</a>
-            <button class="action-btn" onclick="compartirWeb()">📤</button>
+            <a href="https://instagram.com/danijrosado" target="_blank" class="action-btn" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none;">IG</a>
+            <button class="action-btn" onclick="compartir()">📤</button>
         </div>
-        <img src="https://i.ibb.co/whyNbnM0/Pine-Tools-com-Picsart-25-12-28-01-34-21-661.png" alt="Logo" class="logo-img">
+        <img src="https://i.ibb.co/whyNbnM0/Pine-Tools-com-Picsart-25-12-28-01-34-21-661.png" class="logo-img">
         <h1>DANIJR</h1>
-        <div class="header-loc">📍 CONJUNTO CERRADO ARMONIA, VALLEDUPAR</div>
+        <div class="header-loc">📍 Valledupar, Cesar</div>
     </header>
 
-    <section class="biografia-texto">
-        <span class="label-bio">MI COMPROMISO</span>
-        <div style="margin-top: 20px;">
-            <p style="margin:0; opacity: 0.8; line-height: 1.6;">Mi trabajo se define por la disciplina de perfeccionar cada técnica y dejar tu esencia en el resultado final.</p>
-            <div class="lema-danijr">GRACIAS DEUS</div>
-        </div>
-    </section>
-
-    <div class="vip-box glass">
-        <h3>MEMBRESÍA VIP 👑</h3>
-        <p style="font-size: 0.75rem; opacity: 0.7; margin: 8px 0 0;">22% de descuento en servicios desde $17.000</p>
+    <div class="biografia">
+        Mi trabajo se define por la disciplina de perfeccionar cada técnica y dejar tu esencia en el resultado final.
+        <div class="lema">GRACIAS DEUS</div>
     </div>
 
     <div class="form-container">
-        <input type="text" id="nombre" placeholder="Nombre y Apellido">
-        <input type="tel" id="telefono" placeholder="WhatsApp (Ej: 300...)" oninput="validarTel(this)">
-        <div id="cliente-status"></div>
+        <input type="text" id="nombre" placeholder="Nombre completo">
+        <input type="tel" id="telefono" placeholder="WhatsApp (opcional)">
     </div>
 
-    <div id="serv-render" style="margin-top: 20px;"></div>
-
-    <div class="servicios-list" style="margin-top: 10px; padding: 0 20px;">
-        <div class="servicio-card glass" style="opacity: 0.4; border-style: dashed; cursor: default;">
-            <div class="info">
-                <strong>Limpieza Facial</strong>
-                <span>(Skincare & Exfoliación)</span>
-                <span style="color: var(--radioactive); font-weight: 800;">PRÓXIMAMENTE</span>
-            </div>
-            <div class="precio-tag">--</div>
-        </div>
-    </div>
-
-    <div class="form-container" style="margin-top: 20px;">
-        <select id="modalidad" onchange="actualizarCuentas()">
-            <option value="studio">CASA DANIJR (Conjunto Armonia)</option>
-            <option value="conjunto">DENTRO DEL CONJUNTO</option>
-            <option value="fuera">FUERA DEL CONJUNTO (+$8.000)</option>
-        </select>
-        <input type="text" id="direccion" placeholder="Torre/Apto o Dirección exacta">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <input type="date" id="fecha">
-            <select id="hora"></select>
-        </div>
-        <select id="metodo-pago">
-            <option value="Efectivo">Efectivo (Dinero físico)</option>
-            <option value="Transferencia">Transferencia (Nequi/Daviplata)</option>
-        </select>
-    </div>
+    <div id="serv-render"></div>
 
     <div class="reserva-bar">
-        <div class="aviso-tiempo">⚠️ RESERVAS CON 45 MINUTOS DE ANTICIPACIÓN</div>
-        <div class="total-row" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
-            <div>
-                <div id="promo-msg" style="color: var(--radioactive); font-size: 0.7rem; font-weight: 900; margin-bottom: 4px;"></div>
-                <span id="items-count" style="font-size: 0.7rem; opacity: 0.6;">0 seleccionados</span>
-            </div>
-            <div style="text-align: right;">
-                <span style="font-size: 0.6rem; font-weight: 800; opacity: 0.5;">TOTAL</span>
-                <div id="total-val" style="font-size: 1.8rem; font-weight: 900; color: var(--radioactive); line-height: 1;">$0</div>
-            </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px; align-items: flex-end;">
+            <span id="items-count" style="opacity: 0.6; font-size: 0.8rem;">0 seleccionados</span>
+            <div id="total-val" style="font-size: 1.8rem; font-weight: 900; color: var(--radioactive);">$0</div>
         </div>
-        <a href="#" class="btn-enviar" onclick="enviarWhatsApp()">AGENDAR CITA</a>
-        <div class="politica-nota">⚠️ Cancelaciones con mínimo 2 horas de antelación.</div>
+        <a href="#" class="btn-enviar" onclick="enviar()">AGENDAR POR WHATSAPP</a>
     </div>
 
     <script>
-        const WHATSAPP_DANIJR = "573007152391"; 
-        const CLIENTES_VIP = ["3007152391", "3116052608", "3003093563", "3043206244", "3022894403", "3016909418", "3023036377"];
-        const slots = ["08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM"];
+        // CONFIGURACIÓN
+        const estaOcupado = false; // true = Rojo/Ocupado | false = Verde/Disponible
+        const WHATSAPP_NUM = "573007152391";
+        
         const servicios = [
-            { n: "Corte", p: 12000 },
-            { n: "Barba", p: 6000 },
-            { n: "Cejas", p: 3000, d: "(Perfilado y/o Diseño)" },
-            { n: "Mascarilla", p: 3000, d: "(Puntos Negros)" },
-            { n: "Colorimetría", p: 0, d: "(Combo Color + Corte)", sub: [{ n: "Platinado Completo", p: 98000 }, { n: "Rayitos", p: 58000 }] }
+            {n: "Corte", p: 15000},
+            {n: "Colorimetría Completo", p: 90000},
+            {n: "Rayitos", p: 60000},
+            {n: "Barba", p: 6000},
+            {n: "Cejas", p: 3000},
+            {n: "Mascarilla", p: 3000},
+            {n: "Fuera del Conjunto (Domicilio)", p: 10000}
         ];
 
         let seleccionado = [];
-        const estaOcupado = false; 
-
-        function validarTel(input) {
-            input.value = input.value.replace(/\D/g, '').substring(0, 10);
-            actualizarCuentas();
-        }
 
         function renderStatus() {
             const container = document.getElementById('status-container');
-            if(estaOcupado) {
-                container.innerHTML = `<div class="status-pill" style="color: var(--rojo-status)"><div class="dot" style="background: var(--rojo-status)"></div> OCUPADO</div>`;
-            } else {
-                container.innerHTML = `<div class="status-pill" style="color: var(--verde-status)"><div class="dot" style="background: var(--verde-status)"></div> DISPONIBLE</div>`;
-            }
+            container.innerHTML = estaOcupado ? 
+            `<div class="status-pill" style="color:var(--rojo-status)"><div class="dot" style="background:var(--rojo-status)"></div>OCUPADO</div>` :
+            `<div class="status-pill" style="color:var(--verde-status)"><div class="dot" style="background:var(--verde-status)"></div>DISPONIBLE</div>`;
         }
 
         window.onload = () => {
             renderStatus();
-            const hoy = new Date().toISOString().split('T')[0];
-            const fInput = document.getElementById('fecha');
-            fInput.value = hoy;
-            fInput.setAttribute('min', hoy);
-            
-            const actualizarHoras = () => {
-                const hSelect = document.getElementById('hora');
-                hSelect.innerHTML = '';
-                const ahora = new Date();
-                const esHoy = fInput.value === ahora.toISOString().split('T')[0];
-                slots.forEach(s => {
-                    let [h, m] = s.split(':');
-                    let h24 = parseInt(h);
-                    if (s.includes('PM') && h24 !== 12) h24 += 12;
-                    if (s.includes('AM') && h24 === 12) h24 = 0;
-                    let slotTime = new Date();
-                    slotTime.setHours(h24, parseInt(m), 0);
-                    if (!esHoy || (slotTime.getTime() > ahora.getTime() + 2700000)) {
-                        let o = document.createElement('option'); o.value = o.text = s; hSelect.add(o);
-                    }
-                });
-            };
-            fInput.onchange = actualizarHoras;
-            actualizarHoras();
-
             const render = document.getElementById('serv-render');
             servicios.forEach((s, i) => {
                 render.innerHTML += `
-                    <div class="servicio-card glass" id="serv-${i}" onclick="toggleServ(${i})">
-                        <div class="info"><strong id="tit-${i}">${s.n}</strong>${s.d ? `<span>${s.d}</span>` : ''}</div>
-                        <div class="precio-tag">${s.p > 0 ? '$' + s.p.toLocaleString() : '--'}</div>
-                    </div>
-                    ${s.sub ? `<div id="sub-${i}" class="sub-servicios glass" style="display:none">
-                        ${s.sub.map((sb, si) => `<div class="servicio-card" onclick="event.stopPropagation(); selSub(${i}, ${si})">
-                            <span>${sb.n}</span><strong>$${sb.p.toLocaleString()}</strong>
-                        </div>`).join('')}
-                    </div>` : ''}`;
+                <div class="servicio-card" id="s-${i}" onclick="toggleServicio(${i})">
+                    <strong>${s.n}</strong>
+                    <div class="precio-tag">$${s.p.toLocaleString()}</div>
+                </div>`;
             });
         };
 
-        function toggleServ(i) {
+        function toggleServicio(i) {
             const s = servicios[i];
-            if(s.sub) {
-                const subDiv = document.getElementById(`sub-${i}`);
-                subDiv.style.display = subDiv.style.display === 'none' ? 'grid' : 'none';
+            const foundIndex = seleccionado.indexOf(s);
+            
+            if(foundIndex > -1) {
+                seleccionado.splice(foundIndex, 1);
+                document.getElementById(`s-${i}`).classList.remove('selected');
             } else {
-                const idx = seleccionado.findIndex(x => x.n === s.n);
-                if(idx > -1) { 
-                    seleccionado.splice(idx, 1); document.getElementById(`serv-${i}`).classList.remove('selected'); 
-                } else { 
-                    seleccionado.push(s); document.getElementById(`serv-${i}`).classList.add('selected'); 
-                }
+                seleccionado.push(s);
+                document.getElementById(`s-${i}`).classList.add('selected');
             }
-            actualizarCuentas();
+            
+            actualizarTotal();
         }
 
-        function selSub(pi, si) {
-            const sb = servicios[pi].sub[si];
-            const tit = document.getElementById(`tit-${pi}`);
-            const card = document.getElementById(`serv-${pi}`);
-            const corteCard = document.getElementById('serv-0');
-            const corteServ = servicios[0];
-            const ya = seleccionado.findIndex(x => x.n === sb.n);
-            if (ya > -1) {
-                seleccionado.splice(ya, 1); tit.innerText = servicios[pi].n; card.classList.remove('selected');
-            } else {
-                seleccionado = seleccionado.filter(x => !servicios[pi].sub.some(y => y.n === x.n));
-                seleccionado.push(sb); tit.innerText = sb.n + " (+ Corte)"; card.classList.add('selected');
-                if (!seleccionado.some(x => x.n === corteServ.n)) {
-                    seleccionado.push(corteServ); corteCard.classList.add('selected');
-                }
-            }
-            actualizarCuentas();
-        }
-
-        function actualizarCuentas() {
-            let sub = seleccionado.reduce((a, b) => a + b.p, 0);
-            let tel = document.getElementById('telefono').value;
-            let status = document.getElementById('cliente-status');
-            let desc = 0;
-            if(CLIENTES_VIP.includes(tel)) {
-                status.innerText = "CLIENTE VIP 👑"; status.style.color = "var(--radioactive)";
-                if(sub >= 17000) desc = 0.22;
-            } else { status.innerText = ""; }
-            let dom = document.getElementById('modalidad').value === 'fuera' ? 8000 : 0;
-            document.getElementById('total-val').innerText = `$${(Math.round(sub * (1 - desc)) + dom).toLocaleString()}`;
+        function actualizarTotal() {
+            const total = seleccionado.reduce((acc, curr) => acc + curr.p, 0);
+            document.getElementById('total-val').innerText = `$${total.toLocaleString()}`;
             document.getElementById('items-count').innerText = `${seleccionado.length} seleccionados`;
-            document.getElementById('promo-msg').innerText = desc > 0 ? "VIP -22% DTO APLICADO" : "";
         }
 
-        function enviarWhatsApp() {
-            const n = document.getElementById('nombre').value;
-            const d = document.getElementById('direccion').value;
-            if(!n || !d || seleccionado.length === 0) return alert("Completa los datos");
-            let msg = `*RESERVA DANIJR*%0A*Cliente:* ${n}%0A*Fecha:* ${document.getElementById('fecha').value} / ${document.getElementById('hora').value}%0A*Servicios:*%0A`;
-            seleccionado.forEach(s => msg += `- ${s.n}%0A`);
-            msg += `%0A*TOTAL:* ${document.getElementById('total-val').innerText}`;
-            window.location.href = `https://wa.me/${WHATSAPP_DANIJR}?text=${msg}`;
+        function enviar() {
+            const nombre = document.getElementById('nombre').value;
+            if(!nombre) return alert("Por favor, ingresa tu nombre.");
+            if(seleccionado.length === 0) return alert("Selecciona al menos un servicio.");
+
+            let mensaje = `*RESERVA DANIJR*%0A`;
+            mensaje += `*Cliente:* ${nombre}%0A`;
+            mensaje += `*Servicios:*%0A`;
+            seleccionado.forEach(s => mensaje += `- ${s.n} ($${s.p.toLocaleString()})%0A`);
+            mensaje += `%0A*TOTAL ESTIMADO:* ${document.getElementById('total-val').innerText}`;
+            
+            window.location.href = `https://wa.me/${WHATSAPP_NUM}?text=${mensaje}`;
         }
 
-        function compartirWeb() { 
-            if (navigator.share) navigator.share({ title: 'Danijr Barber', url: window.location.href }); 
-            else alert("Link: " + window.location.href);
+        function compartir() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Danijr Exclusive Barber',
+                    text: 'Agenda tu cita con Danijr en Valledupar.',
+                    url: window.location.href
+                });
+            }
         }
     </script>
 </body>
-        </html>
-            
+</html>
