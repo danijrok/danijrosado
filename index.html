@@ -14,12 +14,9 @@
     
     <style>
         :root {
-            /* Nueva Paleta de Colores según imagen */
-            --oil: #242424;           /* Fondo principal */
-            --porcelain: #F2F2F2;     /* Textos y realces */
-            --crystal-blue: #56BEFF;  /* Color de acento / botones */
-            
-            --negro-profundo: #1a1a1a;
+            --oil: #242424;           
+            --porcelain: #F2F2F2;     
+            --crystal-blue: #56BEFF;  
             --rojo-status: #ff3b30;
             --verde-status: #4cd964;
             --gris-input: rgba(242, 242, 242, 0.07); 
@@ -38,7 +35,6 @@
 
         header { padding: 60px 20px 30px; text-align: center; position: relative; }
 
-        /* Status & Actions */
         .status-wrapper { position: absolute; top: 25px; left: 20px; }
         .status-pill {
             display: inline-flex; align-items: center; gap: 6px;
@@ -57,7 +53,7 @@
         }
         .insta-btn { background: var(--insta); border: none; padding: 10px 14px; }
 
-        .logo-img { width: 110px; height: 110px; margin-bottom: 15px; border-radius: 50%; border: 2px solid var(--crystal-blue); padding: 5px; }
+        .logo-img { width: 110px; height: 110px; margin-bottom: 15px; border-radius: 50%; border: none; padding: 0; }
 
         h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -2px; margin: 0; color: var(--porcelain); text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         .header-loc { font-size: 0.7rem; color: var(--crystal-blue); font-weight: 800; margin-top: 8px; letter-spacing: 1.5px; opacity: 0.9; }
@@ -71,7 +67,6 @@
         .vip-box { border: 1px solid var(--crystal-blue); margin: 0 20px 25px; padding: 20px; border-radius: 24px; text-align: center; background: linear-gradient(145deg, rgba(86, 190, 255, 0.1), transparent); }
         .vip-box h3 { color: var(--crystal-blue); font-size: 0.85rem; letter-spacing: 2px; margin: 0; font-weight: 900; }
 
-        /* Form Controls */
         .form-container { padding: 0 20px; display: grid; gap: 12px; }
         input, select { 
             background: var(--gris-input); border: 1px solid rgba(242,242,242,0.1); 
@@ -88,7 +83,6 @@
         input::placeholder { color: rgba(242, 242, 242, 0.4); }
         input:focus { border-color: var(--crystal-blue); background: rgba(242,242,242,0.1); }
 
-        /* Servicios */
         .servicio-card { 
             padding: 18px 22px; border-radius: 22px; display: flex; 
             justify-content: space-between; align-items: center; 
@@ -104,7 +98,6 @@
         .sub-item { padding: 12px 15px; border-radius: 12px; display: flex; justify-content: space-between; font-size: 0.85rem; border: 1px solid transparent; color: var(--porcelain); }
         .sub-item.active { border-color: var(--crystal-blue); color: var(--crystal-blue); font-weight: 800; }
 
-        /* Reserva Bar */
         .reserva-bar { position: fixed; bottom: 0; width: 100%; background: rgba(36, 36, 36, 0.98); backdrop-filter: blur(25px); border-top: 1px solid rgba(242,242,242,0.1); padding: 15px 20px 35px; z-index: 9999; }
         .aviso-tiempo { background: rgba(86, 190, 255, 0.1); border: 1px solid var(--crystal-blue); color: var(--crystal-blue); padding: 10px; border-radius: 12px; font-size: 0.7rem; text-align: center; margin-bottom: 15px; font-weight: 800; letter-spacing: 0.5px; }
         
@@ -143,8 +136,8 @@
     </section>
 
     <div class="vip-box glass">
-        <h3>SISTEMA VIP 👑</h3>
-        <p style="font-size: 0.75rem; opacity: 0.8; margin: 8px 0 0;">Descuento exclusivo del <b>22%</b> para clientes recurrentes en servicios superiores a $17.000.</p>
+        <h3>BENEFICIO VIP 👑</h3>
+        <p style="font-size: 0.75rem; opacity: 0.8; margin: 8px 0 0;">Descuento exclusivo del <b>10%</b> en todos los servicios para nuestros clientes recurrentes.</p>
     </div>
 
     <div class="form-container">
@@ -171,7 +164,7 @@
         <select id="modalidad" onchange="actualizarCuentas()">
             <option value="studio">CASA DANIJR (Conjunto Armonia)</option>
             <option value="conjunto">DENTRO DEL CONJUNTO</option>
-            <option value="fuera">DOMICILIO FUERA (+$8.000)</option>
+            <option value="fuera">DOMICILIO FUERA (+$10.000)</option>
         </select>
         <input type="text" id="direccion" placeholder="Torre/Apto o Dirección detallada">
         
@@ -326,13 +319,13 @@
             let desc = 0;
             if(CLIENTES_VIP.includes(tel)) {
                 status.innerText = "NIVEL: CLIENTE VIP 👑";
-                if(subTotal >= 17000) desc = 0.22;
+                desc = 0.10; 
             } else { status.innerText = ""; }
-            let dom = document.getElementById('modalidad').value === 'fuera' ? 8000 : 0;
+            let dom = document.getElementById('modalidad').value === 'fuera' ? 10000 : 0;
             let totalFinal = Math.round(subTotal * (1 - desc)) + dom;
             document.getElementById('total-val').innerText = `$${totalFinal.toLocaleString()}`;
             document.getElementById('items-count').innerText = `${seleccionado.length} servicio(s) seleccionado(s)`;
-            document.getElementById('promo-msg').innerText = desc > 0 ? "DESCUENTO VIP APLICADO (-22%)" : "";
+            document.getElementById('promo-msg').innerText = desc > 0 ? "DESCUENTO VIP APLICADO (-10%)" : "";
         }
 
         function enviarWhatsApp() {
@@ -350,9 +343,13 @@
         }
 
         function compartirWeb() { 
-            if (navigator.share) navigator.share({ title: 'Danijr Barber', url: window.location.href });
-            else alert("Link copiado: " + window.location.href);
+            if (navigator.share) {
+                navigator.share({ title: 'Danijr Barber', url: window.location.href });
+            } else {
+                alert("Link: " + window.location.href);
+            }
         }
     </script>
 </body>
-</html>
+                                                   </html>
+    
