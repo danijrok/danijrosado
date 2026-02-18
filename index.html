@@ -3,121 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Danijr Barber">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/whyNbnM0/Pine-Tools-com-Picsart-25-12-28-01-34-21-661.png">
+
     <title>Danijr | Exclusive Barber</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --negro: #131313; --azul: #243CCE; --radioactive: #DBFF1A;
-            --rojo-status: #ff3b30; --verde-status: #4cd964; --blanco: #FFFFFF;
-            --gris-input: rgba(255, 255, 255, 0.05); --borde: rgba(36, 60, 206, 0.4);
+            /* Nueva Paleta de Colores según imagen */
+            --oil: #242424;           /* Fondo principal */
+            --porcelain: #F2F2F2;     /* Textos y realces */
+            --crystal-blue: #56BEFF;  /* Color de acento / botones */
+            
+            --negro-profundo: #1a1a1a;
+            --rojo-status: #ff3b30;
+            --verde-status: #4cd964;
+            --gris-input: rgba(242, 242, 242, 0.07); 
+            --borde: rgba(86, 190, 255, 0.3);
+            --texto-muted: #8e8e93;
+            --insta: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
         }
-        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; outline: none; }
-        body { margin: 0; font-family: 'Inter', sans-serif; background-color: var(--negro); color: var(--blanco); padding-bottom: 120px; }
-        
-        header { padding: 60px 20px 20px; text-align: center; position: relative; }
-        
-        .status-wrapper { position: absolute; top: 20px; left: 20px; }
-        .status-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 12px; font-size: 0.6rem; font-weight: 800; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
-        .dot { width: 7px; height: 7px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
-        
-        .top-actions { position: absolute; top: 20px; right: 20px; display: flex; gap: 10px; }
-        .action-btn { background: var(--gris-input); border: 1px solid var(--borde); color: white; padding: 8px 12px; border-radius: 12px; font-weight: 800; font-size: 0.8rem; text-decoration: none; }
-        
-        .logo-img { width: 100px; height: 100px; margin-bottom: 15px; border-radius: 50%; }
-        h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: -2px; margin: 0; color: var(--radioactive); }
-        .header-loc { font-size: 0.75rem; color: var(--azul); font-weight: 800; margin-top: 5px; }
 
-        .form-container { padding: 20px; display: grid; gap: 15px; }
-        input { background: var(--gris-input); border: 1px solid rgba(255,255,255,0.1); padding: 18px; border-radius: 18px; color: white; width: 100%; font-size: 1rem; }
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; outline: none; }
         
-        .servicio-card { padding: 20px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin: 0 20px 10px; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
-        .servicio-card.selected { border-color: var(--radioactive); background: rgba(219, 255, 26, 0.1); }
-        .precio-tag { font-weight: 900; color: var(--radioactive); font-size: 1.2rem; }
+        body { 
+            margin: 0; font-family: 'Inter', sans-serif; background-color: var(--oil); 
+            color: var(--porcelain); padding-bottom: 280px; overflow-x: hidden;
+            line-height: 1.4;
+        }
+
+        header { padding: 60px 20px 30px; text-align: center; position: relative; }
+
+        /* Status & Actions */
+        .status-wrapper { position: absolute; top: 25px; left: 20px; }
+        .status-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(242,242,242,0.05); padding: 8px 12px; border-radius: 12px;
+            font-size: 0.65rem; font-weight: 800; border: 1px solid rgba(242,242,242,0.1);
+            backdrop-filter: blur(10px); text-transform: uppercase;
+        }
+        .dot { width: 8px; height: 8px; border-radius: 50%; box-shadow: 0 0 10px currentColor; }
+
+        .top-actions { position: absolute; top: 25px; right: 20px; display: flex; gap: 10px; }
+        .action-btn { 
+            background: var(--gris-input); backdrop-filter: blur(10px); 
+            border: 1px solid var(--borde); color: var(--porcelain); padding: 10px; 
+            border-radius: 12px; font-weight: 800; font-size: 0.9rem; 
+            text-decoration: none; display: flex; align-items: center; justify-content: center;
+        }
+        .insta-btn { background: var(--insta); border: none; padding: 10px 14px; }
+
+        .logo-img { width: 110px; height: 110px; margin-bottom: 15px; border-radius: 50%; border: 2px solid var(--crystal-blue); padding: 5px; }
+
+        h1 { font-size: 2.8rem; font-weight: 900; letter-spacing: -2px; margin: 0; color: var(--porcelain); text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .header-loc { font-size: 0.7rem; color: var(--crystal-blue); font-weight: 800; margin-top: 8px; letter-spacing: 1.5px; opacity: 0.9; }
+
+        .glass { background: rgba(242, 242, 242, 0.03); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(242, 242, 242, 0.08); }
+
+        .biografia-texto { padding: 10px 30px 30px; text-align: center; }
+        .label-bio { font-size: 0.6rem; color: var(--crystal-blue); letter-spacing: 4px; font-weight: 800; text-transform: uppercase; opacity: 0.8; }
+        .lema-danijr { color: var(--porcelain); font-weight: 900; font-size: 1.3rem; margin-top: 15px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .vip-box { border: 1px solid var(--crystal-blue); margin: 0 20px 25px; padding: 20px; border-radius: 24px; text-align: center; background: linear-gradient(145deg, rgba(86, 190, 255, 0.1), transparent); }
+        .vip-box h3 { color: var(--crystal-blue); font-size: 0.85rem; letter-spacing: 2px; margin: 0; font-weight: 900; }
+
+        /* Form Controls */
+        .form-container { padding: 0 20px; display: grid; gap: 12px; }
+        input, select { 
+            background: var(--gris-input); border: 1px solid rgba(242,242,242,0.1); 
+            padding: 16px; border-radius: 16px; color: var(--porcelain); font-size: 0.95rem; 
+            width: 100%; transition: 0.3s; font-family: 'Inter', sans-serif;
+            appearance: none; -webkit-appearance: none;
+        }
         
-        .reserva-bar { position: fixed; bottom: 0; width: 100%; background: rgba(19, 19, 19, 0.98); padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); z-index: 999; }
-        .btn-enviar { background: var(--radioactive); color: var(--negro); text-align: center; padding: 20px; border-radius: 22px; text-decoration: none; font-weight: 900; display: block; }
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2356BEFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 15px center; background-size: 16px;
+        }
+
+        input::placeholder { color: rgba(242, 242, 242, 0.4); }
+        input:focus { border-color: var(--crystal-blue); background: rgba(242,242,242,0.1); }
+
+        /* Servicios */
+        .servicio-card { 
+            padding: 18px 22px; border-radius: 22px; display: flex; 
+            justify-content: space-between; align-items: center; 
+            margin: 0 20px 10px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            border: 1px solid rgba(242,242,242,0.05); cursor: pointer; 
+        }
+        .servicio-card.selected { border-color: var(--crystal-blue); background: rgba(86, 190, 255, 0.15); transform: scale(1.02); }
+        .precio-tag { font-weight: 900; color: var(--crystal-blue); font-size: 1.1rem; }
+        .info strong { font-size: 1rem; display: block; color: var(--porcelain); }
+        .info span { font-size: 0.75rem; color: var(--texto-muted); display: block; margin-top: 4px; }
+
+        .sub-servicios { margin: -5px 30px 15px; padding: 10px; border-radius: 18px; border: 1px dashed var(--crystal-blue); display: grid; gap: 8px; background: rgba(86, 190, 255, 0.05); }
+        .sub-item { padding: 12px 15px; border-radius: 12px; display: flex; justify-content: space-between; font-size: 0.85rem; border: 1px solid transparent; color: var(--porcelain); }
+        .sub-item.active { border-color: var(--crystal-blue); color: var(--crystal-blue); font-weight: 800; }
+
+        /* Reserva Bar */
+        .reserva-bar { position: fixed; bottom: 0; width: 100%; background: rgba(36, 36, 36, 0.98); backdrop-filter: blur(25px); border-top: 1px solid rgba(242,242,242,0.1); padding: 15px 20px 35px; z-index: 9999; }
+        .aviso-tiempo { background: rgba(86, 190, 255, 0.1); border: 1px solid var(--crystal-blue); color: var(--crystal-blue); padding: 10px; border-radius: 12px; font-size: 0.7rem; text-align: center; margin-bottom: 15px; font-weight: 800; letter-spacing: 0.5px; }
+        
+        .btn-enviar { 
+            background: var(--crystal-blue); color: var(--oil); text-align: center; 
+            padding: 18px; border-radius: 20px; text-decoration: none; 
+            font-weight: 900; font-size: 1.1rem; display: block; 
+            box-shadow: 0 10px 30px rgba(86, 190, 255, 0.3); transition: 0.3s;
+            border: none; width: 100%; cursor: pointer;
+        }
+        .btn-enviar:active { transform: scale(0.96); }
+        .politica-nota { font-size: 0.6rem; color: var(--texto-muted); text-align: center; margin-top: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+        #cliente-status { text-align: center; font-weight: 900; font-size: 0.75rem; margin: 5px 0; min-height: 15px; color: var(--crystal-blue); }
     </style>
 </head>
 <body>
+
     <header>
         <div class="status-wrapper" id="status-container"></div>
         <div class="top-actions">
-            <a href="https://instagram.com/danijrosado" class="action-btn">IG</a>
-            <button class="action-btn" onclick="compartir()">📤</button>
+            <a href="https://instagram.com/danijrosado" target="_blank" class="action-btn insta-btn">IG</a>
+            <button class="action-btn" onclick="compartirWeb()">📤</button>
         </div>
-        <img src="https://i.ibb.co/whyNbnM0/Pine-Tools-com-Picsart-25-12-28-01-34-21-661.png" class="logo-img">
+        <img src="https://i.ibb.co/whyNbnM0/Pine-Tools-com-Picsart-25-12-28-01-34-21-661.png" alt="Danijr Logo" class="logo-img">
         <h1>DANIJR</h1>
-        <div class="header-loc">📍 VALLEDUPAR, COLOMBIA</div>
+        <div class="header-loc">📍 VALLEDUPAR, CONJUNTO ARMONIA</div>
     </header>
 
-    <div class="form-container">
-        <input type="text" id="nombre" placeholder="Tu Nombre">
-        <input type="tel" id="telefono" placeholder="WhatsApp">
+    <section class="biografia-texto">
+        <span class="label-bio">ART & DISCIPLINE</span>
+        <div style="margin-top: 15px;">
+            <p style="margin:0; opacity: 0.9; line-height: 1.6; font-size: 0.95rem;">Perfeccionando cada técnica para resaltar tu esencia única.</p>
+            <div class="lema-danijr">GRACIAS DEUS</div>
+        </div>
+    </section>
+
+    <div class="vip-box glass">
+        <h3>SISTEMA VIP 👑</h3>
+        <p style="font-size: 0.75rem; opacity: 0.8; margin: 8px 0 0;">Descuento exclusivo del <b>22%</b> para clientes recurrentes en servicios superiores a $17.000.</p>
     </div>
 
-    <div id="serv-render"></div>
+    <div class="form-container">
+        <input type="text" id="nombre" placeholder="Tu nombre completo">
+        <input type="tel" id="telefono" placeholder="WhatsApp (Ej: 300...)" oninput="validarTel(this)">
+        <div id="cliente-status"></div>
+    </div>
+
+    <div id="serv-render" style="margin-top: 20px;"></div>
+
+    <div class="servicios-list" style="margin-top: 10px; padding: 0 20px;">
+        <div class="servicio-card glass" style="opacity: 0.5; border-style: dashed; cursor: default;">
+            <div class="info">
+                <strong>Limpieza Facial</strong>
+                <span>Skincare & Exfoliación profunda</span>
+                <span style="color: var(--crystal-blue); font-weight: 800; text-transform: uppercase; font-size: 0.6rem;">Disponible pronto</span>
+            </div>
+            <div class="precio-tag">--</div>
+        </div>
+    </div>
+
+    <div class="form-container" style="margin-top: 25px;">
+        <label style="font-size: 0.65rem; font-weight: 800; color: var(--crystal-blue); margin-left: 5px;">MODALIDAD Y UBICACIÓN</label>
+        <select id="modalidad" onchange="actualizarCuentas()">
+            <option value="studio">CASA DANIJR (Conjunto Armonia)</option>
+            <option value="conjunto">DENTRO DEL CONJUNTO</option>
+            <option value="fuera">DOMICILIO FUERA (+$8.000)</option>
+        </select>
+        <input type="text" id="direccion" placeholder="Torre/Apto o Dirección detallada">
+        
+        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 10px;">
+            <input type="date" id="fecha">
+            <select id="hora"></select>
+        </div>
+
+        <select id="metodo-pago">
+            <option value="Efectivo">Efectivo</option>
+            <option value="Nequi">Nequi</option>
+            <option value="Daviplata">Daviplata</option>
+        </select>
+    </div>
 
     <div class="reserva-bar">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-            <span id="items-count" style="opacity: 0.6; font-size: 0.8rem;">0 seleccionados</span>
-            <div id="total-val" style="font-size: 1.5rem; font-weight: 900; color: var(--radioactive);">$0</div>
+        <div class="aviso-tiempo">⚠️ RESERVAR CON 45 MINUTOS DE ANTICIPACIÓN</div>
+        <div class="total-row" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 15px;">
+            <div>
+                <div id="promo-msg" style="color: var(--crystal-blue); font-size: 0.75rem; font-weight: 900; margin-bottom: 4px; height: 14px;"></div>
+                <span id="items-count" style="font-size: 0.75rem; opacity: 0.6;">Ningún servicio seleccionado</span>
+            </div>
+            <div style="text-align: right;">
+                <span style="font-size: 0.65rem; font-weight: 800; opacity: 0.5;">TOTAL ESTIMADO</span>
+                <div id="total-val" style="font-size: 1.8rem; font-weight: 900; color: var(--crystal-blue); line-height: 1;">$0</div>
+            </div>
         </div>
-        <a href="#" class="btn-enviar" onclick="enviar()">AGENDAR POR WHATSAPP</a>
+        <button class="btn-enviar" onclick="enviarWhatsApp()">AGENDAR CITA POR WHATSAPP</button>
+        <div class="politica-nota">Cancelaciones con mín. 2 horas de antelación.</div>
     </div>
 
     <script>
-        const estaOcupado = false; 
-        const WHATSAPP = "573007152391";
+        const WHATSAPP_DANIJR = "573007152391"; 
+        const CLIENTES_VIP = ["3007152391", "3116052608", "3003093563", "3043206244", "3022894403", "3016909418", "3023036377"];
         
-        // PRECIOS ACTUALIZADOS
+        const slots = ["08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM", "08:00 PM"];
+        
         const servicios = [
-            {n:"Corte", p:15000}, 
-            {n:"Colorimetría Completo", p:90000}, 
-            {n:"Rayitos", p:60000},
-            {n:"Barba", p:6000},
-            {n:"Cejas", p:3000},
-            {n:"Mascarilla", p:3000},
-            {n:"Fuera del Conjunto", p:10000}
+            { n: "Corte", p: 12000, d: "Corte clásico o moderno + Asesoría" },
+            { n: "Barba", p: 6000, d: "Perfilado con navaja y toalla caliente" },
+            { n: "Cejas", p: 3000, d: "Perfilado y limpieza de diseño" },
+            { n: "Mascarilla", p: 3000, d: "Remoción de puntos negros" },
+            { n: "Colorimetría", p: 0, d: "Combo con Corte incluido", sub: [{ n: "Platinado Completo", p: 98000 }, { n: "Rayitos / Reflejos", p: 58000 }] }
         ];
 
         let seleccionado = [];
+        const estaOcupado = false; 
+
+        function validarTel(input) {
+            input.value = input.value.replace(/\D/g, '').substring(0, 10);
+            actualizarCuentas();
+        }
 
         function renderStatus() {
-            const c = document.getElementById('status-container');
-            c.innerHTML = estaOcupado ? 
-            `<div class="status-pill" style="color:var(--rojo-status)"><div class="dot" style="background:var(--rojo-status)"></div>OCUPADO</div>` :
-            `<div class="status-pill" style="color:var(--verde-status)"><div class="dot" style="background:var(--verde-status)"></div>DISPONIBLE</div>`;
+            const container = document.getElementById('status-container');
+            if(estaOcupado) {
+                container.innerHTML = `<div class="status-pill" style="color: var(--rojo-status); border-color: var(--rojo-status)"><div class="dot" style="background: var(--rojo-status)"></div> OCUPADO</div>`;
+            } else {
+                container.innerHTML = `<div class="status-pill" style="color: var(--verde-status); border-color: var(--verde-status)"><div class="dot" style="background: var(--verde-status)"></div> DISPONIBLE</div>`;
+            }
         }
 
         window.onload = () => {
             renderStatus();
-            const r = document.getElementById('serv-render');
+            const hoy = new Date().toISOString().split('T')[0];
+            const fInput = document.getElementById('fecha');
+            fInput.value = hoy;
+            fInput.setAttribute('min', hoy);
+            
+            const actualizarHoras = () => {
+                const hSelect = document.getElementById('hora');
+                hSelect.innerHTML = '';
+                const ahora = new Date();
+                const esHoy = fInput.value === ahora.toISOString().split('T')[0];
+                
+                slots.forEach(s => {
+                    let [h, mPart] = s.split(':');
+                    let [m, ampm] = mPart.split(' ');
+                    let h24 = parseInt(h);
+                    if (ampm === 'PM' && h24 !== 12) h24 += 12;
+                    if (ampm === 'AM' && h24 === 12) h24 = 0;
+                    let slotTime = new Date();
+                    slotTime.setHours(h24, parseInt(m), 0);
+                    if (!esHoy || (slotTime.getTime() > ahora.getTime() + 2700000)) {
+                        let o = document.createElement('option'); o.value = o.text = s; hSelect.add(o);
+                    }
+                });
+            };
+            fInput.onchange = actualizarHoras;
+            actualizarHoras();
+
+            const render = document.getElementById('serv-render');
             servicios.forEach((s, i) => {
-                r.innerHTML += `<div class="servicio-card" id="s-${i}" onclick="sel(${i})">
-                    <strong>${s.n}</strong><div class="precio-tag">$${s.p.toLocaleString()}</div>
-                </div>`;
+                render.innerHTML += `
+                    <div class="servicio-card glass" id="serv-${i}" onclick="toggleServ(${i})">
+                        <div class="info"><strong id="tit-${i}">${s.n}</strong><span>${s.d}</span></div>
+                        <div class="precio-tag">${s.p > 0 ? '$' + s.p.toLocaleString() : '--'}</div>
+                    </div>
+                    ${s.sub ? `<div id="sub-${i}" class="sub-servicios glass" style="display:none">
+                        ${s.sub.map((sb, si) => `<div class="sub-item" id="subitem-${i}-${si}" onclick="event.stopPropagation(); selSub(${i}, ${si})">
+                            <span>${sb.n}</span><strong>$${sb.p.toLocaleString()}</strong>
+                        </div>`).join('')}
+                    </div>` : ''}`;
             });
         };
 
-        function sel(i) {
+        function toggleServ(i) {
             const s = servicios[i];
-            const idx = seleccionado.indexOf(s);
-            if(idx > -1) { seleccionado.splice(idx, 1); document.getElementById(`s-${i}`).classList.remove('selected'); }
-            else { seleccionado.push(s); document.getElementById(`s-${i}`).classList.add('selected'); }
-            let t = seleccionado.reduce((a, b) => a + b.p, 0);
-            document.getElementById('total-val').innerText = `$${t.toLocaleString()}`;
-            document.getElementById('items-count').innerText = `${seleccionado.length} seleccionados`;
+            if(s.sub) {
+                const subDiv = document.getElementById(`sub-${i}`);
+                subDiv.style.display = subDiv.style.display === 'none' ? 'grid' : 'none';
+            } else {
+                const idx = seleccionado.findIndex(x => x.n === s.n);
+                if(idx > -1) { 
+                    seleccionado.splice(idx, 1); document.getElementById(`serv-${i}`).classList.remove('selected'); 
+                } else { 
+                    seleccionado.push(s); document.getElementById(`serv-${i}`).classList.add('selected'); 
+                }
+            }
+            actualizarCuentas();
         }
 
-        function enviar() {
-            const n = document.getElementById('nombre').value;
-            if(!n || seleccionado.length === 0) return alert("Faltan datos");
-            let m = `*RESERVA DANIJR*%0A*Cliente:* ${n}%0A*Servicios:*%0A`;
-            seleccionado.forEach(s => m += `- ${s.n}%0A`);
-            m += `%0A*TOTAL:* ${document.getElementById('total-val').innerText}`;
-            window.location.href = `https://wa.me/${WHATSAPP}?text=${m}`;
+        function selSub(pi, si) {
+            const sb = servicios[pi].sub[si];
+            const tit = document.getElementById(`tit-${pi}`);
+            const card = document.getElementById(`serv-${pi}`);
+            const corteCard = document.getElementById('serv-0');
+            const corteServ = servicios[0];
+            const items = document.querySelectorAll(`[id^="subitem-${pi}-"]`);
+            items.forEach(el => el.classList.remove('active'));
+
+            const ya = seleccionado.findIndex(x => x.n === sb.n);
+            if (ya > -1) {
+                seleccionado.splice(ya, 1); tit.innerText = servicios[pi].n; card.classList.remove('selected');
+            } else {
+                seleccionado = seleccionado.filter(x => !servicios[pi].sub.some(y => y.n === x.n));
+                seleccionado.push(sb); 
+                tit.innerText = sb.n + " (+ Corte)"; 
+                card.classList.add('selected');
+                document.getElementById(`subitem-${pi}-${si}`).classList.add('active');
+                if (!seleccionado.some(x => x.n === corteServ.n)) {
+                    seleccionado.push(corteServ); corteCard.classList.add('selected');
+                }
+            }
+            actualizarCuentas();
         }
-        function compartir() { navigator.share({title:'Danijr Barber', url: window.location.href}); }
+
+        function actualizarCuentas() {
+            let subTotal = seleccionado.reduce((a, b) => a + b.p, 0);
+            let tel = document.getElementById('telefono').value;
+            let status = document.getElementById('cliente-status');
+            let desc = 0;
+            if(CLIENTES_VIP.includes(tel)) {
+                status.innerText = "NIVEL: CLIENTE VIP 👑";
+                if(subTotal >= 17000) desc = 0.22;
+            } else { status.innerText = ""; }
+            let dom = document.getElementById('modalidad').value === 'fuera' ? 8000 : 0;
+            let totalFinal = Math.round(subTotal * (1 - desc)) + dom;
+            document.getElementById('total-val').innerText = `$${totalFinal.toLocaleString()}`;
+            document.getElementById('items-count').innerText = `${seleccionado.length} servicio(s) seleccionado(s)`;
+            document.getElementById('promo-msg').innerText = desc > 0 ? "DESCUENTO VIP APLICADO (-22%)" : "";
+        }
+
+        function enviarWhatsApp() {
+            const n = document.getElementById('nombre').value.trim();
+            const d = document.getElementById('direccion').value.trim();
+            const f = document.getElementById('fecha').value;
+            const h = document.getElementById('hora').value;
+            const m = document.getElementById('metodo-pago').value;
+            const t = document.getElementById('total-val').innerText;
+            if(!n || !d || seleccionado.length === 0) return alert("⚠️ Por favor completa tu nombre, dirección y selecciona al menos un servicio.");
+            let msg = `*💈 NUEVA CITA - DANIJR*%0A%0A👤 *Cliente:* ${n}%0A📅 *Fecha:* ${f}%0A⏰ *Hora:* ${h}%0A📍 *Ubicación:* ${d}%0A💳 *Pago:* ${m}%0A%0A*Servicios:*%0A`;
+            seleccionado.forEach(s => msg += `• ${s.n}%0A`);
+            msg += `%0A💰 *TOTAL ESTIMADO: ${t}*%0A%0A_Confirmar disponibilidad aquí..._`;
+            window.location.href = `https://wa.me/${WHATSAPP_DANIJR}?text=${msg}`;
+        }
+
+        function compartirWeb() { 
+            if (navigator.share) navigator.share({ title: 'Danijr Barber', url: window.location.href });
+            else alert("Link copiado: " + window.location.href);
+        }
     </script>
 </body>
 </html>
